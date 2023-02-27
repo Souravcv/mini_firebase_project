@@ -1,5 +1,6 @@
 import 'package:fire_stor/services/auth.dart';
 import 'package:fire_stor/shared/consttants.dart';
+import 'package:fire_stor/shared/loading.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -13,12 +14,13 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final AuthServica _auth = AuthServica();
   final _formKey = GlobalKey<FormState>();
+  bool lsoading = false;
   String email = '';
   String passworde = '';
   String error = '';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return lsoading?Loading(): Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
@@ -72,10 +74,14 @@ class _RegisterState extends State<Register> {
                 ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
+                         setState(() {
+                          lsoading = true;
+                        });
                         dynamic reselt = await _auth
                             .registerWithEmailAndPassword(email, passworde);
                         if (reselt == null) {
                           setState(() {
+                            lsoading= false;
                             error = "please enter  a valid email ";
                           });
                         } else {}

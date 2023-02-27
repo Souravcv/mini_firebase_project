@@ -1,6 +1,7 @@
 import 'package:fire_stor/screens/authenticate/authenticate.dart';
 import 'package:fire_stor/services/auth.dart';
 import 'package:fire_stor/shared/consttants.dart';
+import 'package:fire_stor/shared/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -16,12 +17,14 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final AuthServica _auth = AuthServica();
   final _formKey = GlobalKey<FormState>();
+bool lsoading = false;
+
   String email = '';
   String passworde = '';
   String error = '';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return lsoading?Loading(): Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
@@ -75,12 +78,16 @@ class _SignInState extends State<SignIn> {
                 ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
+                        setState(() {
+                          lsoading = true;
+                        });
                         dynamic reselt = await _auth.signInWithEmailAndPassword(
                             email, passworde);
 
                         if (reselt == null) {
                           setState(() {
                             error = "Could not sign in with those cedentials ";
+                            lsoading = false;
                           });
                         } else {}
                       }
