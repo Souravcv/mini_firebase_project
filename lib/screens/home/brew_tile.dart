@@ -7,8 +7,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 class BrewTile extends StatelessWidget {
-  final  brew;
-   BrewTile({super.key,this.brew});
+  final   brew;
+   BrewTile({super.key, this.brew});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +21,8 @@ class BrewTile extends StatelessWidget {
             radius: 20.0,
             backgroundColor: Colors.brown[brew.strenght],
           ),
+          title: Text(brew.name),
+          subtitle: Text('Takes${brew.sugars}'),
         ),
       ),
     );

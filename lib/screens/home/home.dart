@@ -1,12 +1,10 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fire_stor/screens/home/brew_list.dart';
+import 'package:fire_stor/screens/home/setting_form.dart';
 import 'package:fire_stor/services/auth.dart';
 import 'package:fire_stor/services/database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 
@@ -18,6 +16,16 @@ final  AuthServica _auth =AuthServica();
 
   @override
   Widget build(BuildContext context) {
+     void _showSettingpanel(){
+showModalBottomSheet(context: context, builder:(context){
+return Container(
+  padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 60.0),
+  child:SettingsForm(),
+);
+} );
+     }
+
+
     return StreamProvider<QuerySnapshot>.value(
       value: DatabaseService(uid: '').brews,
     initialData: (this.uid),
@@ -35,7 +43,11 @@ final  AuthServica _auth =AuthServica();
     await _auth.sineOut();
               }, 
               label: Text('hi'),icon: 
-              Icon(Icons.person),)
+              Icon(Icons.person),),
+              ElevatedButton.icon(onPressed: (){
+                _showSettingpanel();
+              },
+               icon: Icon(Icons.settings_applications), label: Text('settings'))
           ],
         ),
         body:BrewList() ,
