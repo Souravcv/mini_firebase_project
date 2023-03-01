@@ -6,7 +6,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:js/js.dart';
 import 'dart:js';
-void main()async {
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -23,11 +24,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<Userscreen?>.value(
-      value: AuthServica().user, 
+      value: AuthServica().user,
       initialData: null,
       child: MaterialApp(
         title: 'Flutter Demo',
-        
         home: Wrapper(),
       ),
     );

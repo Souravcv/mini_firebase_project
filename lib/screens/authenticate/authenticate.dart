@@ -1,4 +1,3 @@
-
 import 'package:fire_stor/screens/authenticate/register.dart';
 import 'package:fire_stor/screens/authenticate/signin.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -14,19 +13,20 @@ class Authenticate extends StatefulWidget {
 
 class _AuthenticateState extends State<Authenticate> {
   bool showSignIn = true;
-  
+
   var toggleView;
-  void togleView(){
+  void togleView() {
     setState(() {
-      showSignIn=! showSignIn;
+      showSignIn = !showSignIn;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     if (showSignIn) {
-      return SignIn(toggleView:toggleView);
-    }else{
-      return Register(toggleView:toggleView);
+      return SignIn(toggleView: toggleView);
+    } else {
+      return Register(toggleView: toggleView);
     }
   }
 }
