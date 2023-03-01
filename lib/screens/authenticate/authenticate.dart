@@ -1,6 +1,5 @@
 import 'package:fire_stor/screens/authenticate/register.dart';
 import 'package:fire_stor/screens/authenticate/signin.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 
